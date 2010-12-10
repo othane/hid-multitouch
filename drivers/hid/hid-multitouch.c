@@ -57,6 +57,7 @@ struct mt_class {
 /* classes of device behavior */
 #define DUAL1 0
 #define DUAL2 1
+#define CYPRESS 2
 
 /* contact data that only some devices report */
 #define PRESSURE 	(1 << 0)
@@ -77,10 +78,19 @@ static int slot_from_contactnumber(struct mt_device *td)
 	return td->curcontact;
 }
 
+static int cypress_compute_slot(struct mt_device *td)
+{
+	if (td->curcontactid != 0 || td->curcontact == 0)
+		return td->curcontactid;
+	else 
+		return -1;
+}
+
 
 struct mt_class mt_classes[] = {
 	/* DUAL1 */		{ slot_from_contactid, 2, -1 },
 	/* DUAL2 */		{ slot_from_contactnumber, 2, -1 },
+	/* CYPRESS */		{ cypress_compute_slot, 10, 3 },
 };
 
 
@@ -378,6 +388,11 @@ static const struct hid_device_id mt_devices[] = {
 	{ .driver_data = DUAL2,
 		HID_USB_DEVICE(USB_VENDOR_ID_CANDO,
 			USB_DEVICE_ID_CANDO_MULTI_TOUCH_11_6) },
+
+	/* Cypress panel */
+	{ .driver_data = CYPRESS,
+		HID_USB_DEVICE(USB_VENDOR_ID_CYPRESS,
+			USB_DEVICE_ID_CYPRESS_TRUETOUCH) },
 
 	{ }
 };
