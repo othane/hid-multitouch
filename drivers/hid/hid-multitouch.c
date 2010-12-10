@@ -404,6 +404,11 @@ static const struct hid_device_id mt_devices[] = {
 		HID_USB_DEVICE(USB_VENDOR_ID_CANDO,
 			USB_DEVICE_ID_CANDO_MULTI_TOUCH_11_6) },
 
+	/* GeneralTouch panel */
+	{ .driver_data = DUAL2,
+		HID_USB_DEVICE(USB_VENDOR_ID_GENERAL_TOUCH,
+			USB_DEVICE_ID_GENERAL_TOUCH_WIN7_TWOFINGERS) },
+
 	/* Cypress panel */
 	{ .driver_data = CYPRESS,
 		HID_USB_DEVICE(USB_VENDOR_ID_CYPRESS,
