@@ -275,12 +275,6 @@ config HID_MICROSOFT
 	---help---
 	Support for Microsoft devices that are not fully compliant with HID standard.
 
-config HID_MOSART
-	tristate "MosArt dual-touch panels"
-	depends on USB_HID
-	---help---
-	Support for MosArt dual-touch panels.
-
 config HID_MONTEREY
 	tristate "Monterey Genius KB29E keyboard" if EMBEDDED
 	depends on USB_HID

@@ -58,6 +58,7 @@ struct mt_class {
 #define DUAL1 0
 #define DUAL2 1
 #define CYPRESS 2
+#define MOSART 3
 
 /* contact data that only some devices report */
 #define PRESSURE 	(1 << 0)
@@ -87,10 +88,16 @@ static int cypress_compute_slot(struct mt_device *td)
 }
 
 
+static int mosart_compute_slot(struct mt_device *td)
+{
+	return td->curcontactid - 1;
+}
+
 struct mt_class mt_classes[] = {
 	/* DUAL1 */		{ slot_from_contactid, 2, -1 },
 	/* DUAL2 */		{ slot_from_contactnumber, 2, -1 },
 	/* CYPRESS */		{ cypress_compute_slot, 10, 3 },
+	/* MOSART */		{ mosart_compute_slot, 2, 7 },
 };
 
 
@@ -393,6 +400,14 @@ static const struct hid_device_id mt_devices[] = {
 	{ .driver_data = CYPRESS,
 		HID_USB_DEVICE(USB_VENDOR_ID_CYPRESS,
 			USB_DEVICE_ID_CYPRESS_TRUETOUCH) },
+
+	/* MosArt panels */
+	{ .driver_data = MOSART,
+		HID_USB_DEVICE(USB_VENDOR_ID_ASUS,
+			USB_DEVICE_ID_ASUS_T91MT)},
+	{ .driver_data = MOSART,
+		HID_USB_DEVICE(USB_VENDOR_ID_ASUS,
+			USB_DEVICE_ID_ASUSTEK_MULTITOUCH_YFO) },
 
 	{ }
 };
