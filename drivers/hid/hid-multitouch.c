@@ -388,6 +388,14 @@ static const struct hid_device_id mt_devices[] = {
 		HID_USB_DEVICE(USB_VENDOR_ID_CANDO,
 			USB_DEVICE_ID_CANDO_PIXCIR_MULTI_TOUCH) },
 
+	/* Quanta panels */
+	{ .driver_data = DUAL1,
+		HID_USB_DEVICE(USB_VENDOR_ID_QUANTA,
+			USB_DEVICE_ID_QUANTA_OPTICAL_TOUCH) },
+	{ .driver_data = DUAL1,
+		HID_USB_DEVICE(USB_VENDOR_ID_QUANTA,
+			USB_DEVICE_ID_PIXART_IMAGING_INC_OPTICAL_TOUCH_SCREEN) },
+
 	/* Cando panels */
 	{ .driver_data = DUAL2,
 		HID_USB_DEVICE(USB_VENDOR_ID_CANDO,
